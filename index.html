@@ -61,6 +61,15 @@
         <button v-bind:disabled="hideButton">Meu botão</button>
     </div>
 
+    <div id="app9">
+        <p>Mensagem original: {{ message }} - veio de 'data'</p>
+        <p>Mensagem revertida: {{ reverseMessage }} - veio de 'computed'</p>
+        <input v-model="message">
+        <p v-for="i in 1000">Hora {{ horaAtual }} - Computed tem o retorno Cacheado desde que sua dependência não sofra alteração</p>
+        <hr>
+        <p v-for="i in 1000">Hora {{ horaAtualMethod() }} - Method não tem Cache de retorno</p>
+    </div>
+
 </body>
 
 <script>
@@ -185,6 +194,26 @@
             // Ex:
             // <button v-bind:disabled="hideButton">Meu Botão</button>
             hideButton: false
+        }
+    });
+
+    let app9Computed = new Vue({
+        el: '#app9',
+        data: {
+            message: 'Hello World'
+        },
+        computed: {
+            reverseMessage: function() {
+                return this.message.split('').reverse().join('')
+            },
+            horaAtual: function() {
+                return Date.now()
+            }
+        },
+        methods: {
+            horaAtualMethod: function() {
+                return Date.now()
+            }
         }
     });
 
