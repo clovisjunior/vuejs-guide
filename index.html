@@ -57,6 +57,10 @@
         </ol>
     </div>
 
+    <div id="app8">
+        <button v-bind:disabled="hideButton">Meu botão</button>
+    </div>
+
 </body>
 
 <script>
@@ -171,6 +175,18 @@
 
 
     */
+
+    let app8 = new Vue({
+        el: '#app8',
+        data: {
+            // Para elementos que existe apenas quando atributo é 'true'
+            // as opções: 'null', 'undefined', 'false' ou 'disabled' será acresentada ao DOM
+            // porém a opção 'true' removerá o atributo do DOM.
+            // Ex:
+            // <button v-bind:disabled="hideButton">Meu Botão</button>
+            hideButton: false
+        }
+    });
 
 </script>
 
