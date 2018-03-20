@@ -43,6 +43,20 @@
         <input v-model="message">
     </div>
 
+    <div id="app7">
+        <ol>
+            <todo-item></todo-item>
+        </ol>
+        <p>outro</p>
+        <ol>
+            <todo-item2 
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id">
+            </todo-item2>
+        </ol>
+    </div>
+
 </body>
 
 <script>
@@ -95,6 +109,26 @@
         el: '#app6',
         data: {
             message: 'Hello App6'
+        }
+    });
+
+    Vue.component('todo-item' , {
+        template: `<li>This is a todo</li>`
+    });
+
+    Vue.component('todo-item2', {
+        props: ['todo'],
+        template: `<li> {{ todo.text }} </li>`
+    });
+
+    let app7 = new Vue({
+        el: '#app7',
+        data: {
+            groceryList: [
+                { id: 0, text: 'Vegetables' },
+                { id: 1, text: 'Cheese' },
+                { id: 2, text: 'Whater else humans are supposed to eat' },
+            ]
         }
     });
 
